@@ -1,0 +1,102 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-section {
+  background-image: url("../img/left-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+
+.left-section .title {
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-style: oblique;
+  font-weight: bold;
+  margin-top: 10%;
+}
+
+.left-section label,
+.left-section select,
+.left-section input {
+  width: 75%;
+  padding: 10px;
+  border-radius: 45px;
+  font-size: 16px;
+  margin-bottom: 10px;
+  box-sizing: border-box; /* Add this line */
+  text-align: center;
+}
+
+.left-section button {
+  padding: 10px 20px;
+  border-color: aliceblue;
+  border: none;
+  border-radius: 45px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.left-section .amount-wrapper,
+.left-section .converter-wrapper,
+.left-section .from-converter-wrapper,
+.left-section .to-converter-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.right-section {
+  background-image: url("../img/right-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-right: 5%;
+  justify-content: center;
+  width: 40%;
+}
+
+.right-section .result-wrapper,
+.right-section .exchange-rate {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.right-section .result {
+  font-weight: bold;
+  margin-right: 5px;
+  font-size: 48px;
+  color: #f7f7f7;
+  margin-bottom: 5px;
+}
+
+.right-section .currency {
+  font-style: italic;
+  color: #f7f7f7;
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.right-section .exchange-rate {
+  color: #f7f7f7;
+  font-size: 24px;
+}
