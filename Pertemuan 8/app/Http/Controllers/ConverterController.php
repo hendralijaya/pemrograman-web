@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ConvertController extends Controller
+class ConverterController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $data['title'] = 'Currency Converter';
+        return view('converter', $data);
     }
 
     /**
@@ -60,5 +61,19 @@ class ConvertController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function convertRate($fromCurrency, $toCurrency)
+    {
+        $apiKey = "fca_live_iq1WvbaON67X9adHTaJiqEszDhP6jtDz7IouUbWv";
+        $url = "https://api.freecurrencyapi.com/v1/latest?apikey=$apiKey&currencies=$toCurrency&base_currency=$fromCurrency";
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
+        $data = json_decode($response, true);
+        return $data['data'][$toCurrency];
     }
 }
