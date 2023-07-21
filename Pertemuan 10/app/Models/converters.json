@@ -1,0 +1,18 @@
+[
+    {
+        "id": 2,
+        "from_currency": "USD",
+        "from_currency_description": "United States Dollar",
+        "to_currency": "GBP",
+        "to_currency_description": "United Kingdom Pound",
+        "conversion_rate": 0.77
+    },
+    {
+        "id": 3,
+        "from_currency": "EUR",
+        "from_currency_description": "Euro Member Countries",
+        "to_currency": "GBP",
+        "to_currency_description": "United Kingdom Pound",
+        "conversion_rate": 0.87
+    }
+]
