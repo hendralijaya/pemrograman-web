@@ -17,6 +17,7 @@
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
+    @endif
 
     <div class="row vw-100 overflow-hidden max-vh-100">
         <div class="col-md-7 col-12 left-section d-flex flex-column align-items-center justify-content-start gap-4 p-4">

@@ -1,0 +1,46 @@
+.left-section {
+    background-image: url("../img/left-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.row {
+    margin-left: 0 !important;
+}
+
+.right-section {
+    background-image: url("../img/right-background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.form-converter {
+    background-color: none;
+}
+
+@media (max-width: 767px) {
+    body {
+        background-image: url("../img/left-background.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+    }
+
+    .left-section {
+        min-height: 0vh;
+        background-image: none;
+        width: 100%;
+        padding-top: 50px;
+        margin-bottom: 10px;
+    }
+
+    .right-section {
+        background-image: none;
+        min-height: 0vh;
+    }
+}
