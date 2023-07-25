@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\DashboardWebsiteController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConverterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/beranda',[DashboardWebsiteController::class, 'index'])->name('web.index');
-//PETA + VISUALISASI
-Route::get('/petajumlahpenduduk',[DashboardWebsiteController::class, 'petaJumlahPenduduk'])->name('web.jumlahpenduduk');
-Route::get('/petajumlahpengangguran',[DashboardWebsiteController::class, 'petaJumlahPengangguran'])->name('web.jumlahpengangguran');
-Route::get('/petajumlahpendudukmiskin',[DashboardWebsiteController::class, 'petaJumlahPendudukMiskin'])->name('web.jumlahpendudukmiskin');
-Route::get('/petaangkaharapanhidup',[DashboardWebsiteController::class, 'petaAngkaHarapanHidup'])->name('web.angkaharapanhidup');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'postlogin'])->name('post.login');
 
+Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/register', [AuthController::class, 'postregister'])->name('post.register');
 
-Route::get('/kesimpulan', [DashboardWebsiteController::class, 'kesimpulan'])->name('web.kesimpulan');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::get('/tentang-kami', [DashboardWebsiteController::class, 'about'])->name('web.about');
+Route::resource('/converter', ConverterController::class)->except(['show']);
+Route::get('/converter/database', [ConverterController::class, 'database'])->name('converter.database');
+Route::get('/converter/api', [ConverterController::class, 'api'])->name('converter.api');
+Route::post('/converter/conversion', [ConverterController::class, 'conversion'])->name('converter.conversion');
