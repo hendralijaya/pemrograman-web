@@ -46,9 +46,12 @@ convertButton.addEventListener("click", async function () {
     } else if (toSelect.value === "GBP") {
       toCurrencySymbol = "£ ";
     }
-    document.getElementById("from-result").textContent = fromCurrencySymbol + amount;
-    document.getElementById("from-currency").textContent = fromSelect.value;
-    document.getElementById("to-result").textContent = toCurrencySymbol + converted;
+    const fromResult = document.getElementById("from-result");
+    const fromCurrency = document.getElementById("from-currency");
+    const toResult = document.getElementById("to-result");
+    fromResult.textContent = fromCurrencySymbol + amount;
+    fromCurrency.textContent = fromSelect.value;
+    toResult.textContent = toCurrencySymbol + converted;
     document.getElementById("to-currency").textContent = toSelect.value;
     const exchangeRateLabel = document.getElementById("exchange-rate");
     const formattedRate = parseFloat(rate).toFixed(2);
