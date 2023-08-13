@@ -62,18 +62,4 @@ class ConverterController extends Controller
     {
         //
     }
-
-    private function convertRate($fromCurrency, $toCurrency)
-    {
-        $apiKey = "fca_live_iq1WvbaON67X9adHTaJiqEszDhP6jtDz7IouUbWv";
-        $url = "https://api.freecurrencyapi.com/v1/latest?apikey=$apiKey&currencies=$toCurrency&base_currency=$fromCurrency";
-
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
-
-        $data = json_decode($response, true);
-        return $data['data'][$toCurrency];
-    }
 }

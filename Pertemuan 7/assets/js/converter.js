@@ -78,7 +78,6 @@ $(document).ready(function () {
 
   $("#convert").click(function (e) {
     e.preventDefault(); // Prevent the form from submitting
-
     const fromSelect = $("#from");
     const toSelect = $("#to");
     const amount = $("#amount").val();

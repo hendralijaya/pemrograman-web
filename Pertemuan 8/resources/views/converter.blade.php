@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>{{ $title }}</title>
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/reset.css" />
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/converter.css" />
     <!-- Bootstrap -->

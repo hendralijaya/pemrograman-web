@@ -1,0 +1,274 @@
+\documentclass[aspectratio=169, table]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{listings} % Add the listings package
+\usepackage{hyperref} % Add the hyperref package
+
+\lstdefinelanguage{JavaScript}{
+    keywords={function, var, let, const, if, else, for, while, return, true, false},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={class, export, boolean, throw, implements, import, this},
+    ndkeywordstyle=\color{orange}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{gray}\ttfamily,
+    stringstyle=\color{green}\ttfamily,
+}
+
+\lstset{
+    breaklines=true,
+    language=JavaScript,
+    % ... (other style settings)
+}
+
+\lstdefinelanguage{PHP}{
+    keywords={class, function, echo, if, else, foreach, for, while, return},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={public, private, protected, static},
+    ndkeywordstyle=\color{purple}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{gray}\ttfamily,
+    stringstyle=\color{green}\ttfamily,
+}
+
+\lstset{
+    breaklines=true,
+    language=PHP,
+    % ... (other style settings)
+}
+
+\setsansfont[
+  ItalicFont=fonts/TitilliumWeb-Italic.ttf,
+  BoldFont=fonts/TitilliumWeb-Bold.ttf,
+  BoldItalicFont=fonts/TitilliumWeb-BoldItalic.ttf,
+]{TitilliumWeb-Regular.ttf}
+
+\subtitle{IF120203-Web Programming}
+\title{\Huge {\textbf{07: \\Server-side Language}}}
+\date[Serial]{\scriptsize {PRU/SPMI/FR-BM-18/0222}}
+\author[Pradita]{\small {\textbf{PRADITA UNIVERSITY}}}
+
+\usetheme{Pradita}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Goals - Using PHP}
+    \vskip-1cm
+    \begin{itemize}
+        \item To learn about PHP and its role in web development
+        \item To understand how PHP, a server-side scripting language, is used to create dynamic and interactive web applications
+        \item To explore the features of PHP, such as handling form data, working with databases, and creating session management
+        \item To apply PHP code to enhance the functionality and interactivity of web pages, including integrating it with JavaScript and jQuery
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Introduction to PHP}
+    \vskip-0.5cm
+    \begin{itemize}
+        \item PHP (Hypertext Preprocessor) is a widely used server-side scripting language designed for web development.
+        \item It's embedded within HTML code and executed on the server, generating dynamic content before it's sent to the client's web browser.
+        \item PHP is versatile and can be used for various tasks such as handling form data, interacting with databases, and managing user sessions.
+        \item It's open-source and has a vast community, offering extensive documentation and a wide range of libraries and frameworks.
+        \item PHP code is usually embedded in HTML using special tags, such as `<?php ... ?>`, making it easy to mix server-side logic with frontend content.
+    \end{itemize}
+\end{frame}
+
+
+% ... (previous frames)
+
+\begin{frame}[fragile]
+    \frametitle{JavaScript converter.js - Using jQuery}
+    \begin{itemize}
+        \item Modify file converter.js
+        \item Function for Reverse Button (Next Pages)
+        \item Function for Convert Button (Next Pages)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JQuery Reverse Button}
+    \begin{lstlisting}[language=JavaScript]
+$(document).ready(function () {
+  $("#reverse").click(function () {
+    const fromSelect = $("#from");
+    const toSelect = $("#to");
+    const temp = fromSelect.val();
+    fromSelect.val(toSelect.val());
+    toSelect.val(temp);
+  });
+// Next is Convert Button
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JQuery Convert Button - Part 1}
+    \begin{lstlisting}[language=JavaScript]
+$("#convert").click(function (e) {
+    e.preventDefault(); // Prevent the form from submitting
+    const fromSelect = $("#from");
+    const toSelect = $("#to");
+    const amount = $("#amount").val();
+    const fromCurrency = fromSelect.val();
+    const toCurrency = toSelect.val();
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JQuery Convert Button - Part 2}
+    \begin{lstlisting}[language=JavaScript]
+$.ajax({
+      url: "converter.php",
+      type: "POST",
+      data: {
+        amount: amount,
+        from: fromCurrency,
+        to: toCurrency,
+      },
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JQuery Convert Button - Part 3}
+    \begin{lstlisting}[language=JavaScript]
+success: function (result) {
+        const rate = result.rate;
+        const convertedAmount = (rate * amount).toLocaleString(undefined, {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        });
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JQuery Convert Button - Part 4}
+    \begin{lstlisting}[language=JavaScript]
+let fromCurrencySymbol;
+        if (fromCurrency === "IDR") {
+          fromCurrencySymbol = "Rp. ";
+        } else if (fromCurrency === "USD") {
+          fromCurrencySymbol = "$ ";
+        } else if (fromCurrency === "EUR") {
+          fromCurrencySymbol = "€ ";
+        } else if (fromCurrency === "GBP") {
+          fromCurrencySymbol = "£ ";
+        }
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JQuery Convert Button - Part 5}
+    \begin{lstlisting}[language=JavaScript]
+let toCurrencySymbol;
+        if (toCurrency === "IDR") {
+          toCurrencySymbol = "Rp. ";
+        } else if (toCurrency === "USD") {
+          toCurrencySymbol = "$ ";
+        } else if (toCurrency === "EUR") {
+          toCurrencySymbol = "€ ";
+        } else if (toCurrency === "GBP") {
+          toCurrencySymbol = "£ ";
+        }
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JQuery Convert Button - Part 6}
+    \begin{lstlisting}[language=JavaScript]
+$("#from-result").text(fromCurrencySymbol + amount);
+        $("#from-currency").text(fromCurrency);
+        $("#to-result").text(toCurrencySymbol + convertedAmount);
+        $("#to-currency").text(toCurrency);
+        $("#exchange-rate").text(`1 ${fromCurrency} = ${rate} ${toCurrency}`);
+      },
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{JQuery Convert Button - Part 7}
+    \begin{lstlisting}[language=JavaScript]
+error: function (error) {
+        console.error(error);
+      },
+    });
+  });
+});
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Change HTML to PHP}
+    \vskip-1cm
+    \begin{itemize}
+        \item change converter.html to converter.php
+        \item adding PHP script on top of the file
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Adding PHP Script on Top - Part 1}
+    \begin{lstlisting}[language=PHP]
+<?php
+function convertRate($fromCurrency, $toCurrency)
+{
+  $apiKey = "fca_live_iq1WvbaON67X9adHTaJiqEszDhP6jtDz7IouUbWv";
+  $url = "https://api.freecurrencyapi.com/v1/latest?apikey=$apiKey&currencies=$toCurrency&base_currency=$fromCurrency";
+
+  $ch = curl_init($url);
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Adding PHP Script on Top - Part 2}
+    \begin{lstlisting}[language=PHP]
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+  $response = curl_exec($ch);
+  curl_close($ch);
+  $data = json_decode($response, true);
+  return $data['data'][$toCurrency];
+}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Adding PHP Script on Top - Part 3}
+    \begin{lstlisting}[language=PHP]
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+  $amount = $_POST['amount'];
+  $fromCurrency = $_POST['from'];
+  $toCurrency = $_POST['to'];
+  $rate = convertRate($fromCurrency, $toCurrency);
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Adding PHP Script on Top - Part 4}
+    \begin{lstlisting}[language=PHP]
+$response = array(
+    'rate' => $rate
+  );
+
+  header('Content-Type: application/json');
+  echo json_encode($response);
+  exit;
+}
+?>
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame4}
+    \frametitle{Thank You}
+\end{frame4}
+
+\end{document}

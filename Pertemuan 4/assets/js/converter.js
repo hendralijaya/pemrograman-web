@@ -25,7 +25,7 @@ $(document).ready(function () {
     try {
       const response = await fetch(url, options);
       const data = await response.json(); // Parse the response body as JSON
-      console.log(data); // For debugging purposes
+      // console.log(data); // For debugging purposes
       const rate = data["data"][toSelect.val()]; // Get the rate value for the selected currency
       const amount = $("#amount").val();
       const converted = (amount * rate).toLocaleString(undefined, {
