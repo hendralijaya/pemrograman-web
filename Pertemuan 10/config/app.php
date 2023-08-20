@@ -168,6 +168,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // custom response (pertemuan 10)
         App\Providers\ResponseMacroServiceProvider::class
     ])->toArray(),
 

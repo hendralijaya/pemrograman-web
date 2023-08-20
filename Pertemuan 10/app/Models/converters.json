@@ -1,5 +1,13 @@
 [
     {
+        "id": 1,
+        "from_currency": "EUR",
+        "from_currency_description": "Euro Member Countries",
+        "to_currency": "USD",
+        "to_currency_description": "United States Dollar",
+        "conversion_rate": 1.12
+    },
+    {
         "id": 2,
         "from_currency": "USD",
         "from_currency_description": "United States Dollar",

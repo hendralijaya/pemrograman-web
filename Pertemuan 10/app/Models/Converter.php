@@ -74,7 +74,10 @@ class Converter
       $convertersArray = $converters->toArray();
       array_splice($convertersArray, $index, 1);
       self::saveData($convertersArray);
+      return true;
     }
+
+    return false;
   }
 
   private static function saveData($data)

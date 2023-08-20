@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 class ConverterController extends Controller
 {
@@ -21,17 +22,29 @@ class ConverterController extends Controller
             // Add more currencies as needed
         ];
 
-        // set session for users
+        // Set session for users (already authenticated)
         $user = Auth::user();
 
-        // set success to session
-        session()->flash('success', "Welcome back, you access converter view {$user->name}!");
+        // Set success message to session
+        session()->flash('success', "Welcome back, you accessed the converter view {$user->name}!");
 
-        // set tracking to cookie for 1 minute
-        cookie('converter view', true, 1);
+        // Retrieve the current value of the cookie
+        $currentValue = request()->cookie('accessed_converter');
 
-        return view('converter', $data);
+        // If the current value is not set, initialize it to 1
+        if (!is_numeric($currentValue)) {
+            $currentValue = 1;
+        } else {
+            // Convert the current value to an integer and increment it
+            $currentValue = intval($currentValue) + 1;
+        }
+
+        // Create a cookie with the updated value
+        $cookie = Cookie::make('accessed_converter', $currentValue, 60); // Expires in 60 minutes
+
+        return response()->view('converter', $data)->withCookie($cookie);
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -12,15 +12,15 @@
 </head>
 <body>
     {{-- how to access session and cookies in view --}}
-    
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
-
     <div class="row vw-100 overflow-hidden max-vh-100">
         <div class="col-md-7 col-12 left-section d-flex flex-column align-items-center justify-content-start gap-4 p-4">
+            {{-- Session check --}}
+            @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
             <!-- Add the following lines to show login/register links -->
             @if (Route::has('login'))
                 <div class="w-100 d-flex flex-row justify-content-end">
@@ -72,6 +72,13 @@
             </div>
         </div>
         <div class="col-md-5 col-12 right-section d-flex flex-column justify-content-md-center justify-content-start text-light">
+            {{-- Access from cookies --}}
+            @if (Cookie::get('accessed_converter'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                For track user {{ Cookie::get('accessed_converter') }} times
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
             <div class="container d-flex flex-column justify-content-center text-light">
                 <div class="result-wrapper d-flex flex-column align-items-md-end align-items-center">
                     <label class="result display-6 fw-normal" id="from-result">$ 100</label>

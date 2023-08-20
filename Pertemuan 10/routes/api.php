@@ -27,3 +27,6 @@ Route::group(['prefix' => 'converters'], function () {
     Route::put('{id}', [ConverterController::class, 'update']);
     Route::delete('{id}', [ConverterController::class, 'destroy']);
 });
+// Dont Forget To Register the Routes
+// run php artisan serve
+// You can access in http://127.0.0.1:8000/api/converters (like its prefix)

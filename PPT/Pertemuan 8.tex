@@ -65,7 +65,6 @@
 \end{frame}
 
 \begin{frame}{Goals - Using Laravel}
-    \vskip-1cm
     \begin{itemize}
         \item To learn about Laravel, a powerful and elegant PHP framework for web application development
         \item To understand the key concepts of Laravel, including routing, controllers, views, and models
@@ -76,7 +75,6 @@
 \end{frame}
 
 \begin{frame}{Introduction to Laravel}
-    \vskip-0.5cm
     \begin{itemize}
         \item Laravel is a popular open-source PHP framework known for its elegant syntax and robust features.
         \item It follows the Model-View-Controller (MVC) architectural pattern, separating application logic from presentation.
@@ -129,6 +127,28 @@
 \end{frame}
 
 \begin{frame}[fragile]
+    \frametitle{Database Configuration in Laravel Part 1}
+    \begin{itemize}
+        \item Laravel provides a powerful database abstraction layer that makes working with databases easy and efficient.
+        \item To configure the database connection, you need to open the `config/database.php` file and `.env file`.
+        \item In this file, you can set various database connections like MySQL, PostgreSQL, SQLite, and more.
+        \item The configuration options include the driver, host, port, database name, username, and password.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Database Configuration in Laravel Part 2}
+    \begin{itemize}
+        \item Laravel supports query building and the Eloquent ORM (Object-Relational Mapping) for interacting with the database.
+        \item Eloquent provides an elegant syntax for creating, querying, and manipulating database records using PHP classes.
+        \item You can define models to represent database tables and use them to perform various database operations.
+        \item By utilizing migrations, you can version-control your database schema and keep it consistent across different environments.
+        \item Laravel's database configuration and features make database management and interaction seamless and efficient.
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
     \frametitle{Using MVC make Controller}
     \begin{itemize}
         \item Install Composer for using Laravel with this command
@@ -145,164 +165,40 @@
 public function index()
     {
         $data['title'] = 'Currency Converter';
-        return view('converter', $data);
+        return view('converter', $data); //digunakan untuk menampilkan view yang ada di folder views
     }
     \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 1}
-    \begin{lstlisting}[language=JavaScript]
-$("#convert").click(function (e) {
-    e.preventDefault(); // Prevent the form from submitting
-    const fromSelect = $("#from");
-    const toSelect = $("#to");
-    const amount = $("#amount").val();
-    const fromCurrency = fromSelect.val();
-    const toCurrency = toSelect.val();
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 2}
-    \begin{lstlisting}[language=JavaScript]
-$.ajax({
-      url: "converter.php",
-      type: "POST",
-      data: {
-        amount: amount,
-        from: fromCurrency,
-        to: toCurrency,
-      },
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 3}
-    \begin{lstlisting}[language=JavaScript]
-success: function (result) {
-        const rate = result.rate;
-        const convertedAmount = (rate * amount).toLocaleString(undefined, {
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
-        });
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 4}
-    \begin{lstlisting}[language=JavaScript]
-let fromCurrencySymbol;
-        if (fromCurrency === "IDR") {
-          fromCurrencySymbol = "Rp. ";
-        } else if (fromCurrency === "USD") {
-          fromCurrencySymbol = "$ ";
-        } else if (fromCurrency === "EUR") {
-          fromCurrencySymbol = "€ ";
-        } else if (fromCurrency === "GBP") {
-          fromCurrencySymbol = "£ ";
-        }
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 5}
-    \begin{lstlisting}[language=JavaScript]
-let toCurrencySymbol;
-        if (toCurrency === "IDR") {
-          toCurrencySymbol = "Rp. ";
-        } else if (toCurrency === "USD") {
-          toCurrencySymbol = "$ ";
-        } else if (toCurrency === "EUR") {
-          toCurrencySymbol = "€ ";
-        } else if (toCurrency === "GBP") {
-          toCurrencySymbol = "£ ";
-        }
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 6}
-    \begin{lstlisting}[language=JavaScript]
-$("#from-result").text(fromCurrencySymbol + amount);
-        $("#from-currency").text(fromCurrency);
-        $("#to-result").text(toCurrencySymbol + convertedAmount);
-        $("#to-currency").text(toCurrency);
-        $("#exchange-rate").text(`1 ${fromCurrency} = ${rate} ${toCurrency}`);
-      },
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 7}
-    \begin{lstlisting}[language=JavaScript]
-error: function (error) {
-        console.error(error);
-      },
-    });
-  });
-});
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}{Change HTML to PHP}
-    \vskip-1cm
+    \frametitle{Public Folder in Laravel}
     \begin{itemize}
-        \item change converter.html to converter.php
-        \item adding PHP script on top of the file
+        \item In Laravel, the `public` folder serves as the document root for your application when accessed through a web browser.
+        \item All publicly accessible files, such as images, JavaScript, CSS, and other assets, should be placed in this folder.
+        \item The contents of the `public` folder are exposed to the internet, making it the ideal location for assets that need to be directly accessed by users.
     \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Adding PHP Script on Top - Part 1}
-    \begin{lstlisting}[language=PHP]
-<?php
-function convertRate($fromCurrency, $toCurrency)
-{
-  $apiKey = "fca_live_iq1WvbaON67X9adHTaJiqEszDhP6jtDz7IouUbWv";
-  $url = "https://api.freecurrencyapi.com/v1/latest?apikey=$apiKey&currencies=$toCurrency&base_currency=$fromCurrency";
-
-  $ch = curl_init($url);
-    \end{lstlisting}
+    \frametitle{Public Folder in Laravel}
+    \begin{itemize}
+        \item Files in the `public` folder are accessible using the URL of your application followed by the relative path of the file.
+        \item For example, if you have an image named `logo.png` in the `public/images` directory, it can be accessed using `http://yourdomain.com/images/logo.png`.
+        \item Laravel's `asset()` helper function can be used to generate URLs for assets in the `public` folder, making it easy to reference them in your views and templates.
+        \item Remember to place only public assets in the `public` folder, as files here can be directly accessed by anyone with the appropriate URL.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{Adding PHP Script on Top - Part 2}
-    \begin{lstlisting}[language=PHP]
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-  $response = curl_exec($ch);
-  curl_close($ch);
-  $data = json_decode($response, true);
-  return $data['data'][$toCurrency];
-}
-    \end{lstlisting}
+    \frametitle{Public Folder in Laravel}
+    \begin{itemize}
+        \item In meeting 8, we are still using an external Currency API.
+        \item Please using meeting 5 assets place it in public folder (css, js, image)
+        \item Laravel's `asset()` helper function can be used to generate URLs for assets in the `public` folder, making it easy to reference them in your views and templates.
+        \item Remember to place only public assets in the `public` folder, as files here can be directly accessed by anyone with the appropriate URL.
+    \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-    \frametitle{Adding PHP Script on Top - Part 3}
-    \begin{lstlisting}[language=PHP]
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  $amount = $_POST['amount'];
-  $fromCurrency = $_POST['from'];
-  $toCurrency = $_POST['to'];
-  $rate = convertRate($fromCurrency, $toCurrency);
-    \end{lstlisting}
-\end{frame}
-
-\begin{frame}[fragile]
-    \frametitle{Adding PHP Script on Top - Part 4}
-    \begin{lstlisting}[language=PHP]
-$response = array(
-    'rate' => $rate
-  );
-
-  header('Content-Type: application/json');
-  echo json_encode($response);
-  exit;
-}
-?>
-    \end{lstlisting}
-\end{frame}
 
 \begin{frame4}
     \frametitle{Thank You}

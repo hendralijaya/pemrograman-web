@@ -1,0 +1,133 @@
+\documentclass[aspectratio=169, table]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{listings} % Add the listings package
+\usepackage{hyperref} % Add the hyperref package
+
+\lstdefinelanguage{JavaScript}{
+    keywords={function, var, let, const, if, else, for, while, return, true, false},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={class, export, boolean, throw, implements, import, this},
+    ndkeywordstyle=\color{orange}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{gray}\ttfamily,
+    stringstyle=\color{green}\ttfamily,
+}
+
+\lstset{
+    breaklines=true,
+    language=JavaScript,
+    % ... (other style settings)
+}
+
+\lstdefinelanguage{PHP}{
+    keywords={class, function, echo, if, else, foreach, for, while, return},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={public, private, protected, static},
+    ndkeywordstyle=\color{purple}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{gray}\ttfamily,
+    stringstyle=\color{green}\ttfamily,
+}
+
+\lstset{
+    breaklines=true,
+    language=PHP,
+    % ... (other style settings)
+}
+
+\setsansfont[
+  ItalicFont=fonts/TitilliumWeb-Italic.ttf,
+  BoldFont=fonts/TitilliumWeb-Bold.ttf,
+  BoldItalicFont=fonts/TitilliumWeb-BoldItalic.ttf,
+]{TitilliumWeb-Regular.ttf}
+
+\subtitle{IF120203-Web Programming}
+\title{\Huge {\textbf{09: \\Template Engine}}}
+\date[Serial]{\scriptsize {PRU/SPMI/FR-BM-18/0222}}
+\author[Pradita]{\small {\textbf{PRADITA UNIVERSITY}}}
+
+\usetheme{Pradita}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Goals - Using Template Engine}
+\begin{itemize}
+	\item Understand the concept of template engines in web development
+	\item Learn how to integrate and use a template engine in a web application
+	\item Explore the benefits of using a template engine for managing dynamic content and improving code maintainability
+	\item Apply a template engine to enhance the appearance and functionality of a web application developed in previous sessions
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Introduction to Blade}
+\vskip1cm
+\begin{itemize}
+	\item Blade is the default template engine in Laravel, a powerful PHP web framework.
+	\item It provides a convenient way to work with views and generate dynamic content in web applications.
+	\item Blade templates are essentially PHP files with added features that make working with HTML and PHP code more efficient.
+	\item Blade syntax is designed to be easy to read and write, enhancing the separation of concerns between logic and presentation.
+	\item Blade templates support features like template inheritance, components, conditionals, loops, and more.
+	\item The template engine automatically escapes data, providing security against cross-site scripting (XSS) attacks.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Example Of Using Blade Part 1}
+    \begin{lstlisting}[language=PHP]
+    public function index()
+    {
+        $data['title'] = 'Currency Converter';
+        $data['currencies'] = [
+            'IDR' => 'Indonesia Rupiah',
+            'USD' => 'United States Dollar',
+            'EUR' => 'Euro Member Countries',
+            'GBP' => 'United Kingdom Pound',
+            // Add more currencies as needed
+        ];
+        return view('converter', $data);
+    }
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]{Example Of Using Blade Part 2}
+    \begin{itemize}
+        \item in \texttt{converter.blade.php} line 18: \verb|<h1>{{ $title }}</h1>|
+        \item In line 28-30:
+\begin{lstlisting}[language=PHP]
+	@foreach($currencies as $code => $name)
+                <option value="{{ $code }}">{{ $code }} - {{ $name }}</option>
+          @endforeach
+\end{lstlisting}
+        \item It parses from the \texttt{ConverterController} class index function using \verb|$data|
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Challenge (More Advance)}
+    \begin{itemize}
+        \item Seperate the \texttt{converter.blade.php} to 3 parts
+        \item header, main content, and footer
+        \item Reference: 
+        \begin{verbatim}
+        https://laravel.com/docs/10.x/blade#extending-a-layout
+        \end{verbatim}
+    \end{itemize}
+\end{frame}
+
+\begin{frame4}
+    \frametitle{Thank You}
+\end{frame4}
+
+\end{document}

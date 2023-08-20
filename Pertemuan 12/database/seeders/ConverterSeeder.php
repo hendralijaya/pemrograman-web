@@ -29,8 +29,6 @@ class ConverterSeeder extends Seeder
             // Add more conversion rates as needed
         ];
 
-        foreach ($conversionData as $data) {
-            Converter::insert($data);
-        }
+        Converter::insert($conversionData);
     }
 }

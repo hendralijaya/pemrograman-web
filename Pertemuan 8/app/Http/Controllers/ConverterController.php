@@ -11,8 +11,7 @@ class ConverterController extends Controller
      */
     public function index()
     {
-        $data['title'] = 'Currency Converter';
-        return view('converter', $data);
+        return view('converter');
     }
 
     /**

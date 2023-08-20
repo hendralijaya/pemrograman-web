@@ -22,7 +22,11 @@ class UpdateConverterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'from_currency' => 'required',
+            'from_currency_description' => 'required',
+            'to_currency' => 'required',
+            'to_currency_description' => 'required',
+            'conversion_rate' => 'required',
         ];
     }
 }

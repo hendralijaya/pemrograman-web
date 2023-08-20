@@ -19,7 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/converter', [ConverterController::class, 'index']);
+// after auth
+Route::get('/converter', [ConverterController::class, 'index'])->name('converter.index')->middleware('auth');
 
 Auth::routes();
 

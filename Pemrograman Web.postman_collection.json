@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "2c54623a-967b-4beb-8bc4-f361f4846402",
+		"name": "Pemrograman Web",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "16826152"
+	},
+	"item": [
+		{
+			"name": "API Without Database",
+			"item": [
+				{
+					"name": "Converter",
+					"item": [
+						{
+							"name": "Get All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://127.0.0.1:8000/api/converters"
+							},
+							"response": []
+						},
+						{
+							"name": "Find By Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "http://127.0.0.1:8000/api/converters/1"
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_currency\": \"USD\",\r\n    \"from_currency_description\": \"United States Dollar\",\r\n    \"to_currency\": \"EUR\",\r\n    \"to_currency_description\": \"Euro Member Countries\",\r\n    \"conversion_rate\": 0.89\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://127.0.0.1:8000/api/converters"
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"from_currency\": \"EUR\",\r\n    \"from_currency_description\": \"Euro Member Countries\",\r\n    \"to_currency\": \"USD\",\r\n    \"to_currency_description\": \"United States Dollar\",\r\n    \"conversion_rate\": 1.12\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "http://127.0.0.1:8000/api/converters/4"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete By Id",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "http://127.0.0.1:8000/api/converters/1"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
