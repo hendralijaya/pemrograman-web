@@ -7,11 +7,25 @@
 \usepackage{tcolorbox}
 \usepackage{listings} % Add the listings package
 \usepackage{hyperref} % Add the hyperref package
+\usepackage{booktabs}
 
 \lstdefinelanguage{JavaScript}{
     keywords={function, var, let, const, if, else, for, while, return, true, false},
     keywordstyle=\color{blue}\bfseries,
     ndkeywords={class, export, boolean, throw, implements, import, this},
+    ndkeywordstyle=\color{orange}\bfseries,
+    identifierstyle=\color{black},
+    sensitive=false,
+    comment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    commentstyle=\color{gray}\ttfamily,
+    stringstyle=\color{green}\ttfamily,
+}
+
+\lstdefinelanguage{CSS}{
+    keywords={color, background, margin, padding, font-size, text-align, border},
+    keywordstyle=\color{blue}\bfseries,
+    ndkeywords={url},
     ndkeywordstyle=\color{orange}\bfseries,
     identifierstyle=\color{black},
     sensitive=false,
@@ -191,120 +205,232 @@
 \end{frame}
 
 
+\begin{frame}
+    \frametitle{Flex vs Grid - 1}
+    \vskip1cm
+   \begin{tabular}{p{3cm} p{5cm} p{5cm}}
+	    \toprule
+	    \textbf{Aspect} & \textbf{Flexbox} & \textbf{Grid} \\
+	    \midrule
+	    Layout Type & One-dimensional layout (either row or column) & Two-dimensional grid layout \\
+	    Axis Control & Either horizontal (main axis) or vertical (cross axis) layout & Both horizontal and vertical layout (rows and columns) \\
+	    Container Control & Parent container controls the layout of items & Parent container and child items are both controlled \\
+	    Item Control & Items within the container flex according to available space & Items are placed and sized within the grid cells \\
+	    Complex Layouts & Better suited for simpler layouts and alignments & Suited for complex layouts with rows and columns \\
+	    \bottomrule
+	\end{tabular}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Flex vs Grid - 2}
+    \vskip1cm
+   \begin{tabular}{p{3cm} p{5cm} p{5cm}}
+	    \toprule
+	    \textbf{Aspect} & \textbf{Flexbox} & \textbf{Grid} \\
+	    \midrule
+	    Alignment & Limited control over alignment in the cross axis & Fine-grained control over alignment in both axes \\
+	    Ordering & Can reorder items using the \texttt{order} property & Can reorder items using grid lines and template areas \\
+	    Nesting & Can be nested within each other & Can be nested within each other \\
+	    Responsive Layouts & Good for responsive single-axis layouts & Excellent for both single and multi-axis responsive layouts \\
+	    Browser Support & Widely supported in modern browsers & Widely supported in modern browsers \\
+	    \bottomrule
+	\end{tabular}
+\end{frame}
 
 
 \begin{frame}[fragile]
-    \frametitle{JQuery Reverse Button}
-    \begin{lstlisting}[language=JavaScript]
-$(document).ready(function () {
-  $("#reverse").click(function () {
-    const fromSelect = $("#from");
-    const toSelect = $("#to");
-    const temp = fromSelect.val();
-    fromSelect.val(toSelect.val());
-    toSelect.val(temp);
-  });
-// Next is Convert Button
+    \frametitle{Code - HTML - 1}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./assets/css/reset.css" />
+  <link rel="stylesheet" href="./assets/css/converter.css" />
     \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 1}
-    \begin{lstlisting}[language=JavaScript]
-  $("#convert").click(async function () {
-    const fromSelect = $("#from");
-    const toSelect = $("#to");
-    const apiKey = "fca_live_iq1WvbaON67X9adHTaJiqEszDhP6jtDz7IouUbWv";
-    const fromCurrency = fromSelect.val();
-    const toCurrency = toSelect.val();
+    \frametitle{Code - HTML - 2}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+    integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous" />
+</head>
     \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 2}
-    \begin{lstlisting}[language=JavaScript]
-const encodedFromCurrency = encodeURIComponent(fromCurrency);
-    const encodedToCurrency = encodeURIComponent(toCurrency);
-
-    const url = `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&currencies=${encodedToCurrency}&base_currency=${encodedFromCurrency}`;
-    const options = {
-      method: "GET",
-    };
+    \frametitle{Code -Left Section - HTML - 3}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+<body>
+  <div class="row">
+    <div class="col-7 left-section d-flex flex-column align-items-center justify-content-center">
+	<!-- This will contain the contents that is on the left side -->
+      <div class="container-fluid d-flex flex-column align-items-center justify-content-center gap-4">
+        <div class="title">
+          <h1>Currency Converter</h1>
+        </div>
+	<!-- Continue -->
     \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 3}
-    \begin{lstlisting}[language=JavaScript]
-try {
-      const response = await fetch(url, options);
-      const data = await response.json(); // Parse the response body as JSON
-      // console.log(data); // For debugging purposes
-      const rate = data["data"][toSelect.val()]; // Get the rate value for the selected currency
-      const amount = $("#amount").val();
-      const converted = (amount * rate).toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-      });
+    \frametitle{Code -Left Section - HTML - 4}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+<div class="amount-wrapper w-100 d-flex flex-column align-items-center justify-content-center">
+     <label for="amount" class="form-label">Amount</label>
+      <input type="number" id="amount" class="form-control text-center rounded-pill w-75" />
+</div>
     \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 4}
-    \begin{lstlisting}[language=JavaScript]
-let fromCurrencySymbol;
-      if (fromSelect.val() === "IDR") {
-        fromCurrencySymbol = "Rp. ";
-      } else if (fromSelect.val() === "USD") {
-        fromCurrencySymbol = "$ ";
-      } else if (fromSelect.val() === "EUR") {
-        fromCurrencySymbol = "€ ";
-      } else if (fromSelect.val() === "GBP") {
-        fromCurrencySymbol = "£ ";
-      }
+    \frametitle{Code - Left Section - HTML - 5}
+    \vskip1cm
+    \lstinline[language=HTML]! <-- Continue --> !
+    \lstinline[language=HTML]!<div class="converter-wrapper w-100 d-flex flex-column align-items-center justify-content-center gap-3">!
+    \lstinline[language=HTML]!   <div class="from-converter-wrapper w-100 d-flex flex-column align-items-center justify-content-center">!
+    \lstinline[language=HTML]!	<label for="from" class="form-label">From</label>!
+    \lstinline[language=HTML]!	<select name="from" id="from" class="form-select rounded-pill text-center w-75">!
+    \lstinline[language=HTML]!		<option value="IDR">IDR - Indonesia Rupiah</option>!
+    \lstinline[language=HTML]!		<option value="USD">USD - United States Dollar</option>!
+    \lstinline[language=HTML]!		<option value="EUR">EUR - Euro Member Countries</option>!
+    \lstinline[language=HTML]!		<option value="GBP">GBP - United Kingdom Pound</option>!
+    \lstinline[language=HTML]!	</select>!
+    \lstinline[language=HTML]!   </div>!
+    \lstinline[language=HTML]!  <-- Continue --> !
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Code - Left Section - HTML - 6}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+<div class="buttons">
+    <button id="reverse" class="btn btn-light rounded-pill"><i class="bi bi-arrow-down-up"></i></button>
+</div>
     \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 5}
-    \begin{lstlisting}[language=JavaScript]
-let toCurrencySymbol;
-      if (toSelect.val() === "IDR") {
-        toCurrencySymbol = "Rp. ";
-      } else if (toSelect.val() === "USD") {
-        toCurrencySymbol = "$ ";
-      } else if (toSelect.val() === "EUR") {
-        toCurrencySymbol = "€ ";
-      } else if (toSelect.val() === "GBP") {
-        toCurrencySymbol = "£ ";
-      }
+    \frametitle{Code - Left Section - HTML - 7}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+<div class="to-converter-wrapper w-100 d-flex flex-column align-items-center justify-content-center">
+    <label for="to" class="form-label">To</label>
+    <select name="to" id="to" class="form-select rounded-pill text-center w-75">
+      <option value="IDR">IDR - Indonesia Rupiah</option>
+      <option value="USD">USD - United States Dollar</option>
+      <option value="EUR">EUR - Euro Member Countries</option>
+      <option value="GBP">GBP - United Kingdom Pound</option>
+    </select>
+  </div>
+</div>
+    \end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+    \frametitle{Code - Left Section - HTML - 8}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+	<div class="buttons w-75">
+	     <button id="convert" class="btn btn-primary rounded-pill w-100">Convert</button>
+	</div>
+
+    </div>
+ </div>
     \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 6}
-    \begin{lstlisting}[language=JavaScript]
-$("#from-result").text(fromCurrencySymbol + amount);
-      $("#from-currency").text(fromSelect.val());
-      $("#to-result").text(toCurrencySymbol + converted);
-      $("#to-currency").text(toSelect.val());
-      const exchangeRateLabel = $("#exchange-rate");
-      const formattedRate = parseFloat(rate).toFixed(2);
-      const exchangeRateText = `1 ${fromSelect.val()} = ${formattedRate} ${toSelect.val()}`;
+    \frametitle{Code - Right Section - HTML - 9}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+<div class="col-5 right-section d-flex flex-column justify-content-center text-light">
+  <div class="container-fluid d-flex flex-column justify-content-center text-light">
+    <div class="result-wrapper d-flex flex-column align-items-end">
+      <label class="result display-6 fw-normal" id="from-result">$ 100</label>
+      <label class="currency h4 fw-normal fst-italic" id="from-currency">USD</label>
+    </div>
     \end{lstlisting}
 \end{frame}
 
 \begin{frame}[fragile]
-    \frametitle{JQuery Convert Button - Part 7}
-    \begin{lstlisting}[language=JavaScript]
-      exchangeRateLabel.text(exchangeRateText);
-    } catch (error) {
-      console.error(error);
-    }
-  });
-});
+    \frametitle{Code - Right Section - HTML - 10}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+   <div class="result-wrapper d-flex flex-column align-items-end">
+       <label class="result display-6 fw-normal" id="to-result">Rp 1.500.000</label>
+       <label class="currency h4 fw-normal fst-italic" id="to-currency">IDR</label>
+   </div>
+      
+      <label class="exchange-rate d-flex flex-column align-items-end h4 fw-normal" id="exchange-rate">1 USD = 15.000
+        IDR</label>
+    </div>
+  </div>
+</div>
     \end{lstlisting}
 \end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Code - HTML - 11}
+    \vskip1cm
+    \begin{lstlisting}[language=HTML]
+  <!-- JQUERY -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- JS -->
+  <script src="assets/js/converter.js"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+</html>
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Code - CSS - 12}
+    \vskip1cm
+    \begin{lstlisting}[language=CSS]
+.left-section {
+  background-image: url("../img/left-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+    \frametitle{Code - CSS - 13}
+    \vskip1cm
+    \begin{lstlisting}[language=CSS]
+.right-section {
+  background-image: url("../img/right-background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.row {
+  margin: 0 !important;
+}
+    \end{lstlisting}
+\end{frame}
+
 
 \begin{frame4}
     \frametitle{Thank You}
