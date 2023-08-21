@@ -14,6 +14,10 @@
   min-height: 100vh;
 }
 
+.row {
+  margin: 0 !important;
+}
+
 @media (max-width: 767px) {
   body {
     background-image: url("../img/left-background.png");
