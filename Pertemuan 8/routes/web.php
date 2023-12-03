@@ -18,4 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/converter', [ConverterController::class, 'index']);
+// Route::resource('converter', ConverterController::class)->except(['destroy', 'update', 'edit', 'show', 'store', 'create']);

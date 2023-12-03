@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ $title }}</title>
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/reset.css">
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/converter.css">
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci1+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
 </head>
 <body>
     <div class="row vw-100 overflow-hidden max-vh-100">
@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="col-md-5 col-12 right-section d-flex flex-column justify-content-md-center justify-content-start text-light">
-            
+
             <div class="container d-flex flex-column justify-content-center text-light">
                 <div class="result-wrapper d-flex flex-column align-items-md-end align-items-center">
                     <label class="result display-6 fw-normal" id="from-result">$ 100</label>

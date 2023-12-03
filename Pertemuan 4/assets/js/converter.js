@@ -19,12 +19,12 @@ $(document).ready(function () {
     const encodedToCurrency = encodeURIComponent(toCurrency);
 
     const url = `https://api.freecurrencyapi.com/v1/latest?apikey=${apiKey}&currencies=${encodedToCurrency}&base_currency=${encodedFromCurrency}`;
-    const options = {
-      method: "GET",
-    };
     try {
-      const response = await fetch(url, options);
-      const data = await response.json(); // Parse the response body as JSON
+      const data = await $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+      });
       // console.log(data); // For debugging purposes
       const rate = data["data"][toSelect.val()]; // Get the rate value for the selected currency
       const amount = $("#amount").val();

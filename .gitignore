@@ -1,2 +1,5 @@
 /PPT/**/*.synctex.gz
 /PPT/**/*.pdf
+
+/PPT/*.synctex.gz
+/PPT/*.pdf

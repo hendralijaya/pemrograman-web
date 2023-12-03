@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>{{ $title }}</title>
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/reset.css">
     <link rel="stylesheet" href="http://127.0.0.1:8000/css/converter.css">
     <!-- Bootstrap -->
@@ -72,7 +72,7 @@
             </div>
         </div>
         <div class="col-md-5 col-12 right-section d-flex flex-column justify-content-md-center justify-content-start text-light">
-            
+
             <div class="container d-flex flex-column justify-content-center text-light">
                 <div class="result-wrapper d-flex flex-column align-items-md-end align-items-center">
                     <label class="result display-6 fw-normal" id="from-result">
